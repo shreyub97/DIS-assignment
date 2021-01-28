@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-namespace assignment1
+namespace ass1
 {
     class Program
     {
