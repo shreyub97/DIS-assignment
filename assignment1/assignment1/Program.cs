@@ -113,22 +113,22 @@ namespace ass1
         private static void printPellSeries(int n2)
         {
             try
-            {
+            {  // initialize an integer variable to 0, a second var to 1 and the next one to 0
                 int first = 0;
                 int second = 1;
                 int next = 0;
                 int i = 0;
-                Console.Write(first + " ");
+                Console.Write(first + " "); // space between the numbers is essential to increase the readability
                 Console.Write(second + " ");
 
 
-                while (i < (n2 - 2))
-                {
+                while (i < (n2 - 2)) // while loop loops throgh the list of items i for pell series logic
+                { // pell series logic: next variable = twice the second + first 
                     next = (2 * second) + first;
                     first = second;
                     second = next;
                     Console.Write(second + " ");
-                    i++;
+                    i++; // increment i to obtain the pell series
                 }
             }
             catch (Exception)
@@ -150,11 +150,14 @@ namespace ass1
         private static bool squareSums(int n3)
         {
             try
-            {
+            {   // square sum problem: looping through the items in a for a being less than equal to int n
                 for (long a = 0; a * a <= n3; a++)
-                {
+                { 
+                    // looping through the items for b being less than equal to int n
                     for (long b = 0; b * b <= n3; b++)
-                    {
+                    { 
+                        // logic: a*a + b*b assignment operator integer n
+                        // which means 4 = 2^2 + 0^0 or 10 = 3^2 + 1^2
                         if (a * a + b * b == n3)
                             return true;
                     }
@@ -194,18 +197,22 @@ namespace ass1
         private static int diffPairs(int[] nums, int k)
         {
             try
-            {
+            {   // initalize a count variable of tyle integer to 0
                 int count = 0;
                 nums = nums.Distinct().ToArray();
-
-
+                // nums variable holds the number of Distincts and converts to Array type
+                 // initlaize the foor loop to iterate through the list of items in the array through array.length
                 for (int i = 0; i < nums.Length; i++)
-                {
+                { 
+                    // this for loop goes from i+1th element to all the elements in the array
                     for (int j = i + 1; j < nums.Length; j++)
-                    {
+                    { 
+                        // Math.Abs function: after picking the elements one by one: 
+                        // nums[i] - nums[j] == k || nums[j] - nums[i] == k
+                        // determines the absolute difference between the values in the array
                         if (Math.Abs(nums[i] - nums[j]) == k)
                         {
-                            count++;
+                            count++; // count value is incremented 
                         }
                     }
                 }
@@ -317,36 +324,38 @@ namespace ass1
         {
             try
             {
+                // initialize a variable dict and this holds the data structure dictionary of string values
                 var dict = new Dictionary<string, string>();
 
-
+                // loop through all the items in the two-dimensional string array paths from the DestCity method parameter
                 for (int i = 0; i < paths.GetLength(0); i++)
                 {
                     dict.Add(paths[i, 0], paths[i, 1]);
-                }
+                } // keeping adding all the cities in the paths until the condition: paths[i,0],paths[i,1] holds good 
 
 
-                string finalDest = null;
+                string finalDest = null; // initlaize a string finalDest to null value
 
 
-                string destination = paths[0, 1];
+                string destination = paths[0, 1]; // starting from one city, one must be able to reach op the destination city
+                 // there exists a direct path from the initial city to the final city
 
-
-                while (destination != null)
+                while (destination != null) // there is only one destination city and loop condition while
+                    // destination not being equal to null
                 {
-                    if (dict.ContainsKey(destination))
+                    if (dict.ContainsKey(destination)) // ContainsKey: if the dictionalry dict contains the key to the destination city
                     {
-                        destination = dict[destination];
-                    }
+                        destination = dict[destination]; // graph now forms a line without any loop 
+                    } // destination is obtained from the dictionary
                     else
                     {
-                        finalDest = destination;
-                        destination = null;
+                        finalDest = destination; // finalDest is now equal to destination
+                        destination = null; // swalp destination value to null again 
                     }
                 }
 
 
-                return finalDest;
+                return finalDest; // return the final destination city
             }
             catch (Exception)
             {
